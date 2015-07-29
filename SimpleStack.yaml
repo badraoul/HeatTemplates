@@ -9,6 +9,16 @@ parameters:
 resources:  my_web_instance:    type: OS::Nova::Server    properties:      key_name: { get_param: key_name }      image: Cirros.0.3.1.raw      flavor: m1.small
       networks:
         - network: demo1-1029
+  web_floating_IP:
+     type: OS::Nova::FloatingIP
+     properties: 
+        pool: demo1
+
+  web_floating_IP_att:
+     type: OS::Nova::FloatingIPAssociation
+     properties:
+        floating_ip:  { get_resource: web_floating_IP }
+        server_id: { get_resource: my_web_instance }
 
   my_DB_Instance:    type: OS::Nova::Server    properties:      key_name: { get_param: key_name }      image: Cirros.0.3.1.raw      flavor: m1.medium
       networks:

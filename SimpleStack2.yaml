@@ -10,7 +10,7 @@ parameters:
       networks:
         - network: demo1-1029
 
-web_floating_IP:
+  web_floating_IP:
      type: OS::Nova::FloatingIP
      properties: 
         pool: demo1
